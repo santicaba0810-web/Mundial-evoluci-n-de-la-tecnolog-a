@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evolución Tecnológica en los Mundiales de Fútbol</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0D1B2A;
+    --blue:   #1B4FA8;
+    --green:  #0A6E55;
+    --gold:   #C9A03E;
+    --gold-light: #E8C96A;
+    --white:  #FFFFFF;
+    --off-white: #F5F3EE;
+    --light:  #EAE8E2;
+    --text:   #1A1A1A;
+    --muted:  #5C5C5C;
+    --border: #D4D0C8;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--navy);
+    color: var(--white);
+    padding: 80px 60px 60px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 520px; height: 520px;
+    border-radius: 50%;
+    border: 2px solid rgba(201,160,62,0.18);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,160,62,0.10);
+  }
+
+  .cover-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,160,62,0.5);
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 40px;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 58px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 680px;
+    margin-bottom: 24px;
+  }
+
+  .cover-title em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .cover-subtitle {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 56px;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 48px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .cover-meta-item {}
+  .cover-meta-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .cover-meta-value {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 400;
+  }
+
+  .cover-ball {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 220px;
+    height: 220px;
+    opacity: 0.06;
+  }
+
+  /* ── INTRO SECTION ── */
+  .section-intro {
+    background: var(--navy);
+    color: var(--white);
+    padding: 56px 60px;
+    border-top: 3px solid var(--gold);
+  }
+
+  .section-intro p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.78);
+    max-width: 820px;
+  }
+
+  .section-intro p strong {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    padding: 0 60px 80px;
+    background: var(--off-white);
+  }
+
+  /* ── CATEGORY HEADERS ── */
+  .cat-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 48px 0 24px;
+  }
+
+  .cat-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .cat-dot.blue  { background: var(--blue); }
+  .cat-dot.green { background: var(--green); }
+
+  .cat-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .cat-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── TIMELINE RAIL ── */
+  .timeline {
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 58px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--border) 0%, var(--border) 100%);
+  }
+
+  /* ── EVENT CARD ── */
+  .event {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0 0;
+    margin-bottom: 2px;
+    position: relative;
+  }
+
+  .event-left {
+    padding-top: 28px;
+    padding-right: 28px;
+    text-align: right;
+    position: relative;
+  }
+
+  .event-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+  }
+
+  .year-blue  { color: var(--blue); }
+  .year-green { color: var(--green); }
+
+  .event-node {
+    position: absolute;
+    right: -7px;
+    top: 34px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid;
+    background: var(--off-white);
+    z-index: 2;
+  }
+  .node-blue  { border-color: var(--blue); }
+  .node-green { border-color: var(--green); }
+
+  .event-right {
+    padding: 24px 0 24px 36px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .event:last-child .event-right { border-bottom: none; }
+
+  .event-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .event-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
+  .event-card-top {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--light);
+  }
+
+  .event-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .event-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
+  .badge-blue  { background: #E8EEF8; color: #1B4FA8; }
+  .badge-green { background: #E2F0EB; color: #0A6E55; }
+
+  .event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text);
+  }
+
+  .event-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .event-col {
+    padding: 16px 20px;
+  }
+
+  .event-col:first-child {
+    border-right: 1px solid var(--light);
+  }
+
+  .event-col-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .label-blue  { color: var(--blue); }
+  .label-green { color: var(--green); }
+
+  .event-col-label::before {
+    content: '';
+    display: inline-block;
+    width: 16px; height: 1px;
+  }
+  .label-blue::before  { background: var(--blue); }
+  .label-green::before { background: var(--green); }
+
+  .event-col p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .imp-col {
+    background: #FAFAF7;
+  }
+
+  /* ── 2022 PAIR ── */
+  .pair-wrapper {
+    padding: 0 0 0 36px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pair-year-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 0 16px;
+  }
+
+  .pair-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--green);
+    width: 84px;
+    text-align: right;
+    flex-shrink: 0;
+    margin-left: -120px;
+    padding-right: 28px;
+    position: relative;
+  }
+
+  .pair-year-node {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--green);
+    background: var(--off-white);
+    flex-shrink: 0;
+    position: absolute;
+    left: 58px;
+    z-index: 2;
+    margin-top: -6px;
+  }
+
+  .pair-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding-bottom: 24px;
+  }
+
+  /* ── CONCLUSION ── */
+  .conclusion {
+    background: var(--navy);
+    color: var(--white);
+    padding: 56px 60px;
+    border-top: 3px solid var(--gold);
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .conclusion::after {
+    content: '"';
+    position: absolute;
+    right: 50px;
+    top: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 220px;
+    color: rgba(201,160,62,0.07);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .conclusion-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .conclusion p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.78);
+    max-width: 800px;
+  }
+
+  .conclusion p strong { color: var(--gold); font-weight: 500; }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer {
+    background: var(--light);
+    padding: 32px 60px;
+    border-top: 1px solid var(--border);
+  }
+
+  .disclaimer-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8B6914;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .disclaimer-title::before {
+    content: '⚠';
+    font-size: 12px;
+  }
+
+  .disclaimer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .disclaimer li {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .disclaimer li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: #C9A03E;
+    font-weight: 700;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.35);
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+  }
+
+  .footer strong { color: rgba(255,255,255,0.55); font-weight: 500; }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .cover { page-break-after: always; }
+    .event-card:hover { box-shadow: none; }
+    @page { margin: 1cm; size: A4 portrait; }
+  }
+
+  @media (max-width: 720px) {
+    .cover { padding: 48px 24px 40px; }
+    .cover-title { font-size: 38px; }
+    .cover-meta { flex-wrap: wrap; gap: 24px; }
+    .main { padding: 0 24px 60px; }
+    .section-intro, .conclusion, .disclaimer, .footer { padding-left: 24px; padding-right: 24px; }
+    .event { grid-template-columns: 80px 1fr; }
+    .event-body { grid-template-columns: 1fr; }
+    .event-col:first-child { border-right: none; border-bottom: 1px solid var(--light); }
+    .pair-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ COVER ═══════════════════════════════ -->
+<header class="cover">
+  <svg class="cover-ball" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="95" stroke="white" stroke-width="2"/>
+    <polygon points="100,20 120,60 160,60 130,85 142,125 100,100 58,125 70,85 40,60 80,60" stroke="white" stroke-width="1.5" fill="none"/>
+  </svg>
+
+  <div class="cover-tag">Trabajo Escolar · Historia del Deporte</div>
+
+  <h1 class="cover-title">
+    Evolución<br>
+    <em>Tecnológica</em><br>
+    en los Mundiales
+  </h1>
+
+  <p class="cover-subtitle">
+    Siete hitos que transformaron la manera en que el mundo vive,
+    transmite y arbitra el fútbol masculino — de 1954 a 2022.
+  </p>
+
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Período</div>
+      <div class="cover-meta-value">1954 – 2022</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Hitos documentados</div>
+      <div class="cover-meta-value">7 avances tecnológicos</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Área</div>
+      <div class="cover-meta-value">Historia del Deporte</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Nivel</div>
+      <div class="cover-meta-value">Secundaria</div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════ INTRODUCCIÓN ════════════════════════════ -->
+<section class="section-intro">
+  <p>
+    <strong>Introducción.</strong> Desde sus primeras ediciones, los Mundiales de Fútbol Masculino han sido escenario
+    no solo de grandes hazañas deportivas, sino también de importantes transformaciones tecnológicas. A lo largo de
+    las décadas, la tecnología ha cambiado la manera en que los aficionados viven el fútbol —primero a través de las
+    pantallas, luego en el propio campo de juego— permitiendo transmisiones globales cada vez más nítidas y decisiones
+    arbitrales más precisas. A continuación se presentan siete hitos que marcan esta evolución, desde el primer
+    Mundial televisado en 1954 hasta el balón inteligente del torneo de Qatar 2022.
+  </p>
+</section>
+
+<!-- ═══════════════════════════ LÍNEA DE TIEMPO ═════════════════════════ -->
+<main class="main">
+
+  <!-- Categoría: Transmisiones -->
+  <div class="cat-header">
+    <span class="cat-dot blue"></span>
+    <span class="cat-label">Tecnología de transmisión</span>
+    <span class="cat-line"></span>
+  </div>
+
+  <div class="timeline">
+
+    <!-- 1954 -->
+    <div class="event">
+      <div class="event-left">
+        <span class="event-year year-blue">1954</span>
+        <span class="event-node node-blue"></span>
+      </div>
+      <div class="event-right">
+        <div class="event-card">
+          <div class="event-card-top">
+            <div class="event-badge-row">
+              <span class="event-badge badge-blue">Televisión</span>
+              <span style="font-size:11px;color:#999;">Mundial de Suiza</span>
+            </div>
+            <h2 class="event-title">Primer Mundial televisado internacionalmente</h2>
+          </div>
+          <div class="event-body">
+            <div class="event-col">
+              <div class="event-col-label label-blue">¿En qué consistió?</div>
+              <p>El Mundial de Suiza 1954 fue el primero en ser transmitido por televisión a nivel internacional. Las imágenes se emitieron en blanco y negro y llegaron a varios países de Europa Occidental a través de la Unión Europea de Radiodifusión (UER). La cobertura era en directo, aunque parcial.</p>
+            </div>
+            <div class="event-col imp-col">
+              <div class="event-col-label label-blue">Importancia</div>
+              <p>Por primera vez, millones de personas pudieron presenciar un Mundial sin estar en los estadios. Transformó el fútbol en un espectáculo global y sentó las bases de la industria televisiva deportiva moderna que hoy mueve miles de millones de dólares.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1970 -->
+    <div class="event">
+      <div class="event-left">
+        <span class="event-year year-blue">1970</span>
+        <span class="event-node node-blue"></span>
+      </div>
+      <div class="event-right">
+        <div class="event-card">
+          <div class="event-card-top">
+            <div class="event-badge-row">
+              <span class="event-badge badge-blue">Televisión en color</span>
+              <span style="font-size:11px;color:#999;">Mundial de México</span>
+            </div>
+            <h2 class="event-title">Primer Mundial transmitido en color</h2>
+          </div>
+          <div class="event-body">
+            <div class="event-col">
+              <div class="event-col-label label-blue">¿En qué consistió?</div>
+              <p>El Mundial de México 1970 fue el primero en transmitirse en color a nivel internacional. Las cadenas de televisión de distintos continentes recibieron la señal en color, aunque muchos hogares aún contaban con televisores en blanco y negro.</p>
+            </div>
+            <div class="event-col imp-col">
+              <div class="event-col-label label-blue">Importancia</div>
+              <p>Las transmisiones en color hicieron la experiencia mucho más vívida para los espectadores, permitiendo identificar mejor a los equipos por sus camisetas. El icónico amarillo-verde de Brasil y el naranja de los Países Bajos cobraron vida gracias a esta innovación.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2006 -->
+    <div class="event">
+      <div class="event-left">
+        <span class="event-year year-blue">2006</span>
+        <span class="event-node node-blue"></span>
+      </div>
+      <div class="event-right">
+        <div class="event-card">
+          <div class="event-card-top">
+            <div class="event-badge-row">
+              <span class="event-badge badge-blue">Alta Definición</span>
+              <span style="font-size:11px;color:#999;">Mundial de Alemania</span>
+            </div>
+            <h2 class="event-title">Consolidación de transmisiones digitales y alta definición (HD)</h2>
+          </div>
+          <div class="event-body">
+            <div class="event-col">
+              <div class="event-col-label label-blue">¿En qué consistió?</div>
+              <p>El Mundial de Alemania 2006 fue el primero en el que la FIFA ofreció transmisiones oficiales en alta definición (HD) para los principales mercados televisivos. Las señales digitales reemplazaron progresivamente a las analógicas, con mayor resolución de imagen y mejor calidad de audio.</p>
+            </div>
+            <div class="event-col imp-col">
+              <div class="event-col-label label-blue">Importancia</div>
+              <p>La imagen HD permitió apreciar con gran detalle el movimiento del balón y las jugadas polémicas. Marcó el inicio de la era del consumo digital del fútbol, precursora de las plataformas de streaming que dominan el mercado en la actualidad.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /timeline transmisiones -->
+
+  <!-- Categoría: Tecnología en campo -->
+  <div class="cat-header">
+    <span class="cat-dot green"></span>
+    <span class="cat-label">Tecnología en el campo de juego</span>
+    <span class="cat-line"></span>
+  </div>
+
+  <div class="timeline">
+
+    <!-- 2014 -->
+    <div class="event">
+      <div class="event-left">
+        <span class="event-year year-green">2014</span>
+        <span class="event-node node-green"></span>
+      </div>
+      <div class="event-right">
+        <div class="event-card">
+          <div class="event-card-top">
+            <div class="event-badge-row">
+              <span class="event-badge badge-green">Goal-Line Technology</span>
+              <span style="font-size:11px;color:#999;">Mundial de Brasil</span>
+            </div>
+            <h2 class="event-title">Tecnología de Línea de Gol <span style="font-weight:400;font-size:16px;">(Goal-Line Technology)</span></h2>
+          </div>
+          <div class="event-body">
+            <div class="event-col">
+              <div class="event-col-label label-green">¿En qué consistió?</div>
+              <p>Implementada por primera vez en un Mundial en Brasil 2014, esta tecnología utiliza cámaras de alta velocidad o sensores electromagnéticos en los postes para determinar con precisión milimétrica si el balón cruzó la línea de gol. El sistema envía una señal al reloj del árbitro en menos de un segundo.</p>
+            </div>
+            <div class="event-col imp-col">
+              <div class="event-col-label label-green">Importancia</div>
+              <p>Eliminó los llamados "goles fantasma" —balones que cruzan la línea pero no son cobrados—. Su primera aplicación fue en el partido Francia vs. Honduras, donde confirmó un tanto que no era visible a simple vista y puso en evidencia la necesidad de esta herramienta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2018 -->
+    <div class="event">
+      <div class="event-left">
+        <span class="event-year year-green">2018</span>
+        <span class="event-node node-green"></span>
+      </div>
+      <div class="event-right">
+        <div class="event-card">
+          <div class="event-card-top">
+            <div class="event-badge-row">
+              <span class="event-badge badge-green">VAR</span>
+              <span style="font-size:11px;color:#999;">Mundial de Rusia</span>
+            </div>
+            <h2 class="event-title">Implementación del VAR <span style="font-weight:400;font-size:16px;">(Video Assistant Referee)</span></h2>
+          </div>
+          <div class="event-body">
+            <div class="event-col">
+              <div class="event-col-label label-green">¿En qué consistió?</div>
+              <p>El VAR es un sistema en el que árbitros auxiliares revisan en tiempo real imágenes de video para asistir al árbitro central en cuatro tipos de decisiones: goles, penales, tarjetas rojas directas y errores de identidad. El árbitro puede revisar las imágenes en un monitor a un costado del campo.</p>
+            </div>
+            <div class="event-col imp-col">
+              <div class="event-col-label label-green">Importancia</div>
+              <p>Fue la innovación arbitral más significativa en la historia moderna del fútbol. Aunque generó debates sobre las interrupciones del juego, redujo considerablemente los errores graves en jugadas determinantes como goles en fuera de juego o penales no cobrados.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2022 PAIR -->
+    <div style="display:grid;grid-template-columns:120px 1fr;position:relative;">
+      <div style="padding-top:28px;padding-right:28px;text-align:right;position:relative;">
+        <span class="event-year year-green" style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;">2022</span>
+        <span class="event-node node-green" style="position:absolute;right:-7px;top:34px;width:14px;height:14px;border-radius:50%;border:2px solid var(--green);background:var(--off-white);z-index:2;"></span>
+      </div>
+      <div style="padding:24px 0 32px 36px;border-bottom:1px solid var(--border);">
+        <div style="font-size:10px;font-weight:600;letter-spacing:0.13em;text-transform:uppercase;color:var(--green);margin-bottom:14px;">Dos innovaciones simultáneas · Qatar 2022</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+
+          <!-- 2022-A -->
+          <div class="event-card">
+            <div class="event-card-top">
+              <div class="event-badge-row">
+                <span class="event-badge badge-green">Offside Semiautomático</span>
+              </div>
+              <h2 class="event-title" style="font-size:16px;">Tecnología Semiautomática del Fuera de Juego</h2>
+            </div>
+            <div style="padding:14px 20px;">
+              <div class="event-col-label label-green">¿En qué consistió?</div>
+              <p style="font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:12px;">Utiliza 12 cámaras bajo el techo de los estadios y datos del sensor del balón para rastrear hasta 29 puntos del cuerpo de cada jugador en tiempo real. Un algoritmo calcula automáticamente si hay fuera de juego en fracciones de segundo y genera una animación 3D para verificación.</p>
+              <div class="event-col-label label-green" style="margin-top:10px;">Importancia</div>
+              <p style="font-size:13px;line-height:1.7;color:var(--muted);">Redujo el tiempo de revisión del VAR para fuera de juego de varios minutos a aproximadamente 25 segundos en promedio, con mayor precisión en la detección de milímetros.</p>
+            </div>
+          </div>
+
+          <!-- 2022-B -->
+          <div class="event-card">
+            <div class="event-card-top">
+              <div class="event-badge-row">
+                <span class="event-badge badge-green">Balón Inteligente</span>
+              </div>
+              <h2 class="event-title" style="font-size:16px;">Balón Al Rihla con sensor integrado</h2>
+            </div>
+            <div style="padding:14px 20px;">
+              <div class="event-col-label label-green">¿En qué consistió?</div>
+              <p style="font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:12px;">El balón oficial del Mundial de Qatar 2022 incorporó en su interior una unidad de medición inercial (IMU) con un sensor que transmite datos 500 veces por segundo, registrando velocidad, rotación, posición y el momento exacto del contacto.</p>
+              <div class="event-col-label label-green" style="margin-top:10px;">Importancia</div>
+              <p style="font-size:13px;line-height:1.7;color:var(--muted);">Fue un componente clave del sistema semiautomático de fuera de juego, permitiendo determinar el instante preciso del pase que activa el offside. Representó la integración de la inteligencia digital dentro del propio equipamiento de juego.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /timeline campo -->
+
+</main>
+
+<!-- ═══════════════════════════ CONCLUSIÓN ══════════════════════════════ -->
+<section class="conclusion">
+  <div class="conclusion-label">Conclusión</div>
+  <p>
+    La evolución tecnológica en los Mundiales de Fútbol Masculino refleja el avance acelerado de la sociedad hacia
+    una experiencia más conectada, precisa y justa. Desde la primera imagen en blanco y negro de Suiza 1954 hasta
+    el balón inteligente de Qatar 2022, cada innovación ha cumplido un doble propósito: <strong>acercar el
+    espectáculo a más personas en el mundo</strong> y <strong>garantizar mayor equidad en las decisiones dentro
+    del campo</strong>. Esta trayectoria sugiere que, en los próximos torneos, la inteligencia artificial y el
+    análisis de datos en tiempo real continuarán transformando el deporte más popular del planeta.
+  </p>
+</section>
+
+<!-- ═══════════════════════ ASPECTOS NO CONFIRMADOS ═════════════════════ -->
+<section class="disclaimer">
+  <div class="disclaimer-title">Aspectos no confirmados al 100%</div>
+  <ul>
+    <li>El Mundial de Suiza 1954 es reconocido como el primero con transmisión televisiva internacional, aunque algunos registros históricos señalan que la cobertura fuera de Europa fue limitada. Se recomienda verificar el alcance exacto de la señal en fuentes oficiales de la UEFA y la FIFA.</li>
+    <li>Se indica que 2006 (Alemania) fue el año de la "consolidación" de las transmisiones HD; algunas fuentes mencionan pruebas piloto de HD en el Mundial de Corea/Japón 2002. El dato presentado refiere a la oferta oficial generalizada en 2006.</li>
+    <li>El tiempo promedio de revisión del VAR con tecnología semiautomática (~25 segundos en Qatar 2022) proviene de declaraciones de la FIFA; la cifra exacta puede variar según la fuente consultada.</li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════ FOOTER ══════════════════════════════ -->
+<footer class="footer">
+  <span>Evolución Tecnológica en los Mundiales de Fútbol · 1954–2022</span>
+  <span><strong>Trabajo escolar</strong> · Historia del Deporte</span>
+</footer>
+
+</body>
+</html>
